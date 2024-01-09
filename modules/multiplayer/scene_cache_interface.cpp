@@ -108,17 +108,10 @@ void SceneCacheInterface::process_confirm_path(int p_from, const uint8_t *p_pack
 	Node *root_node = SceneTree::get_singleton()->get_root()->get_node(multiplayer->get_root_path());
 	ERR_FAIL_NULL(root_node);
 
-	const bool valid_rpc_checksum = p_packet[1];
-
 	String paths;
 	paths.parse_utf8((const char *)&p_packet[2], p_packet_len - 2);
 
 	const NodePath path = paths;
-
-	if (valid_rpc_checksum == false) {
-		ERR_PRINT("The rpc node checksum failed. Make sure to have the same methods on both nodes. Node path: " + path);
-	}
-
 	Node *node = root_node->get_node(path);
 	ERR_FAIL_NULL(node);
 

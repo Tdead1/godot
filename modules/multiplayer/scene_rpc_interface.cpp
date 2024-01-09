@@ -80,7 +80,6 @@ void SceneRPCInterface::_parse_rpc_config(const Variant &p_config, bool p_for_no
 	ERR_FAIL_COND(p_config.get_type() != Variant::DICTIONARY);
 	const Dictionary config = p_config;
 	Array names = config.keys();
-	names.sort(); // Ensure ID order
 	for (int i = 0; i < names.size(); i++) {
 		ERR_CONTINUE(names[i].get_type() != Variant::STRING && names[i].get_type() != Variant::STRING_NAME);
 		String name = names[i].operator String();
